@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "/about" => "pages#about"
   get "/volunteer" => "pages#volunteer"
   get "/learning" => "links#learning"
-  get "/real-world" => "links#real_world"
+  get "/real-world" => "volunteer_sites#index"
   get "/teaching" => "links#teaching"
   get "/refugees" => "links#refugees"
   get "/" => "sites#index"
