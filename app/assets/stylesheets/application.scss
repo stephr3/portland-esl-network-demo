@@ -1,2 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+$blue: #1E6B9F;
+$light-blue: #247EBB;
+
+body {
+  background-color: $blue;
+}
+
+.logo {
+  height: 30%;
+  background-color: white;
+}
+.logo img{
+  width: 100%;
+  height: auto;
+  padding: 3%;
+}
