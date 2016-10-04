@@ -1,15 +1,47 @@
 <script type="text/javascript">
   function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 45.542094, lng: -122.9346037},
-    zoom: 11
+    center: {lat: 45.5304321, lng: -122.6893288},
+    zoom: 9
   });
 
   var layer = new google.maps.FusionTablesLayer({
     query: {
       select: '\'Address\'',
-      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8'
-    }
+      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+      where: "'Class Happening Now?' = 'Yes'"
+    },
+    styles: [{
+      where: "'PinType' = 'blu_circle'",
+      markerOptions: {
+        iconName: "blu_circle"
+      }
+    }, {
+      where: "'PinType' = 'grn_circle'",
+      markerOptions: {
+        iconName: "grn_circle"
+      }
+    }, {
+      where: "'PinType' = 'red_circle'",
+      markerOptions: {
+        iconName: "red_circle"
+      }
+    }, {
+      where: "'PinType' = 'ylw_circle'",
+      markerOptions: {
+        iconName: "ylw_circle"
+      }
+    }, {
+      where: "'PinType' = 'ltblu_circle'",
+      markerOptions: {
+        iconName: "ltblu_circle"
+      }
+    }, {
+      where: "'PinType' = 'purple_circle'",
+      markerOptions: {
+        iconName: "purple_circle"
+      }
+    }]
   });
   layer.setMap(map);
   }
