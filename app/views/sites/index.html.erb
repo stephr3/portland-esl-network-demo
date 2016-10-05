@@ -1,8 +1,8 @@
 <script type="text/javascript">
   function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 45.5304321, lng: -122.6893288},
-    zoom: 9
+    center: <%= @center_on %>,
+    zoom: <%= @zoom %>
   });
 
   var layer_churches = new google.maps.FusionTablesLayer({
@@ -155,6 +155,12 @@
     <li><%= link_to 'Social Service/Government/Non-Profit', "?site_type=social_service" %></li>
   </ul>
 </div>
+
+<%= form_tag root_path, method: 'get', role: 'search' do %>
+  <%= label_tag :center, 'Find a Class Near You:' %>
+  <%= text_field_tag :center, params[:center], placeholder: 'Enter Zip Code', class: 'form-control', id: 'center-map' %>
+  <%= submit_tag 'Search', name: nil, class: 'btn btn-primary' %>
+<% end %>
 
 <div id="map-container">
   <div id="map"></div>

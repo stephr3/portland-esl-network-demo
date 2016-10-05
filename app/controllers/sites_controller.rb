@@ -1,5 +1,16 @@
 class SitesController < ApplicationController
   def index
+    if params[:center]
+      center = params[:center]
+      lat = Geocoder.search(center).first.coordinates.first
+      lng = Geocoder.search(center).first.coordinates.last
+      @center_on = "{lat: #{lat}, lng: #{lng}}"
+      @zoom = 13
+    else
+      @center_on = "{lat: 45.543897, lng: -122.655977}"
+      @zoom = 9
+    end
+
     if params[:site_type].present?
       if params[:site_type] == 'church'
         @layer = "layer_churches"
