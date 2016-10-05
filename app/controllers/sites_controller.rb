@@ -21,6 +21,9 @@ class SitesController < ApplicationController
     end
   end
 
+  def all_regions
+  end
+
   def north_northeast
   end
 

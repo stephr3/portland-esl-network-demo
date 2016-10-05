@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/teaching" => "links#teaching"
   get "/refugees" => "links#refugees"
   get "/" => "sites#index"
+  get "/all-regions" => "sites#all_regions"
   get "/north-northeast" => "sites#north_northeast"
   get "/south-southeast" => "sites#south_southeast"
   get "/southwest" => "sites#southwest"
