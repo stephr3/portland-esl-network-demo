@@ -4,17 +4,93 @@
     center: {lat: 45.5304321, lng: -122.6893288},
     zoom: 9
   });
+
   var layer_churches = new google.maps.FusionTablesLayer({
     query: {
       select: '\'Address\'',
       from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
-      where: "'PinType' = 'red_circle'"
+      where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Church'"
     },
     styleId: 1,
     templateId: 1,
     styles: [{
       markerOptions: {
         iconName: "red_circle"
+      }
+    }]
+  });
+
+  var layer_colleges = new google.maps.FusionTablesLayer({
+    query: {
+      select: '\'Address\'',
+      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+      where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Community College or University'"
+    },
+    styleId: 1,
+    templateId: 1,
+    styles: [{
+      markerOptions: {
+        iconName: "blu_circle"
+      }
+    }]
+  });
+
+  var layer_businesses = new google.maps.FusionTablesLayer({
+    query: {
+      select: '\'Address\'',
+      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+      where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'For-Profit Business'"
+    },
+    styleId: 1,
+    templateId: 1,
+    styles: [{
+      markerOptions: {
+        iconName: "purple_circle"
+      }
+    }]
+  });
+
+  var layer_libraries = new google.maps.FusionTablesLayer({
+    query: {
+      select: '\'Address\'',
+      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+      where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Library'"
+    },
+    styleId: 1,
+    templateId: 1,
+    styles: [{
+      markerOptions: {
+        iconName: "ylw_circle"
+      }
+    }]
+  });
+
+  var layer_schools = new google.maps.FusionTablesLayer({
+    query: {
+      select: '\'Address\'',
+      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+      where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Public School'"
+    },
+    styleId: 1,
+    templateId: 1,
+    styles: [{
+      markerOptions: {
+        iconName: "ltblu_circle"
+      }
+    }]
+  });
+
+  var layer_services = new google.maps.FusionTablesLayer({
+    query: {
+      select: '\'Address\'',
+      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+      where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Social Service/Government/Non-Profit'"
+    },
+    styleId: 1,
+    templateId: 1,
+    styles: [{
+      markerOptions: {
+        iconName: "grn_circle"
       }
     }]
   });
@@ -28,41 +104,57 @@
     styleId: 1,
     templateId: 1,
     styles: [{
-      where: "'PinType' = 'blu_circle'",
+      where: "'TypeofSite' = 'Community College or University'",
       markerOptions: {
         iconName: "blu_circle"
       }
     }, {
-      where: "'PinType' = 'grn_circle'",
+      where: "TypeofSite' = 'Social Service/Government/Non-Profit'",
       markerOptions: {
         iconName: "grn_circle"
       }
     }, {
-      where: "'PinType' = 'red_circle'",
+      where: "'TypeofSite' = 'Church'",
       markerOptions: {
         iconName: "red_circle"
       }
     }, {
-      where: "'PinType' = 'ylw_circle'",
+      where: "'TypeofSite' = 'Library'",
       markerOptions: {
         iconName: "ylw_circle"
       }
     }, {
-      where: "'PinType' = 'ltblu_circle'",
+      where: "'TypeofSite' = 'Public School'",
       markerOptions: {
         iconName: "ltblu_circle"
       }
     }, {
-      where: "'PinType' = 'purple_circle'",
+      where: "'TypeofSite' = 'For-Profit Business'",
       markerOptions: {
         iconName: "purple_circle"
       }
     }]
   });
-  layer_churches.setMap(map);
+  <%= @layer %>.setMap(map);
   }
 </script>
+
 <h1>Sites#Index</h1>
+
+
+<div class="dropdown">
+  <button class="dropdown-toggle btn btn-primary" type="button" data-toggle="dropdown">Filter by Class Type
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="/">All</a></li>
+    <li><a href="?site_type=church">Church</a></li>
+    <li><a href="?site_type=college">Community College or University</a></li>
+    <li><a href="?site_type=business">For-Profit Business</a></li>
+    <li><a href="?site_type=library">Library</a></li>
+    <li><a href="?site_type=public_school">Public School</a></li>
+    <li><a href="?site_type=social_service">Social Service/Government/Non-Profit</a></li>
+  </ul>
+</div>
 
 <div id="map-container">
   <div id="map"></div>
