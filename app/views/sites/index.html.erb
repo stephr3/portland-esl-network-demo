@@ -4,8 +4,22 @@
     center: {lat: 45.5304321, lng: -122.6893288},
     zoom: 9
   });
+  var layer_churches = new google.maps.FusionTablesLayer({
+    query: {
+      select: '\'Address\'',
+      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+      where: "'PinType' = 'red_circle'"
+    },
+    styleId: 1,
+    templateId: 1,
+    styles: [{
+      markerOptions: {
+        iconName: "red_circle"
+      }
+    }]
+  });
 
-  var layer = new google.maps.FusionTablesLayer({
+  var layer_all = new google.maps.FusionTablesLayer({
     query: {
       select: '\'Address\'',
       from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
@@ -45,7 +59,7 @@
       }
     }]
   });
-  layer.setMap(map);
+  layer_churches.setMap(map);
   }
 </script>
 <h1>Sites#Index</h1>
