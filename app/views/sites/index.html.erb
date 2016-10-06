@@ -138,52 +138,51 @@
   <%= @layer %>.setMap(map);
   }
 </script>
-
-<h1>Sites#Index</h1>
-
-
-<div class="dropdown">
-  <button class="dropdown-toggle btn btn-primary" type="button" data-toggle="dropdown">Filter by Class Type
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><%= link_to 'All', "/" %></li>
-    <li><%= link_to 'Church', "?site_type=church" %></li>
-    <li><%= link_to 'Community College or University', "?site_type=college" %></li>
-    <li><%= link_to 'For-Profit Business', "?site_type=business" %></li>
-    <li><%= link_to 'Library', "?site_type=library" %></li>
-    <li><%= link_to 'Public School', "?site_type=public_school" %></li>
-    <li><%= link_to 'Social Service/Government/Non-Profit', "?site_type=social_service" %></li>
-  </ul>
-</div>
-
+<div class="search-nav">
 <%= form_tag root_path, method: 'get', role: 'search' do %>
-  <%= label_tag :center, 'Find a Class Near You:' %>
+  <%= label_tag :center, 'Search Map by Zip Code:', class: 'main-label' %>
   <%= text_field_tag :center, params[:center], placeholder: 'Enter Zip Code', class: 'form-control', id: 'center-map' %>
-  <%= submit_tag 'Search', name: nil, class: 'btn btn-primary' %>
-<% end %>
-
-<% if @center %>
-  <h5> Your search: <%= @center %></h5>
-<% end %>
-
-<div id="map-container">
-  <div id="map"></div>
+  <%= submit_tag 'Search', name: nil, class: 'btn btn-primary', id: 'center-map-btn' %>
+  <% end %>
+  <% if @center %>
+  <h4> Your search: <%= @center %></h4>
+  <% end %>
+  <div class="dropdown">
+    <button class="dropdown-toggle btn btn-primary" type="button" data-toggle="dropdown" id="class-type-btn">Class Type
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><%= link_to 'All', "/" %></li>
+        <li><%= link_to 'Church', "?site_type=church" %></li>
+        <li><%= link_to 'Community College or University', "?site_type=college" %></li>
+        <li><%= link_to 'For-Profit Business', "?site_type=business" %></li>
+        <li><%= link_to 'Library', "?site_type=library" %></li>
+        <li><%= link_to 'Public School', "?site_type=public_school" %></li>
+        <li><%= link_to 'Social Service/Government/Non-Profit', "?site_type=social_service" %></li>
+      </ul>
+    </div>
 </div>
 
-<div class="dropdown">
-  <button class="dropdown-toggle btn btn-primary" type="button" data-toggle="dropdown">View a List of Classes by Region
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><%= link_to 'All Regions', "?region=all" %></li>
-    <li><%= link_to 'North/Northeast', "?region=north_northeast" %></li>
-    <li><%= link_to 'South/Southeast', "?region=south_southeast" %></li>
-    <li><%= link_to 'Southwest', "?region=southwest" %></li>
-    <li><%= link_to 'Downtown', "?region=downtown" %></li>
-    <li><%= link_to 'Gresham', "?region=gresham" %></li>
-    <li><%= link_to 'Washington County', "?region=washington_county" %></li>
-    <li><%= link_to 'Clark County', "?region=clark_county" %></li>
-    <li><%= link_to 'Other Areas', "?region=other_areas" %></li>
-  </ul>
+<div class="row">
+  <div id="map-container" class="col-md-8">
+    <div id="map"></div>
+  </div>
+  <div class="search-nav col-md-3">
+    <div class="dropdown" id="last-dropdown">
+      <button class="dropdown-toggle btn btn-primary" type="button" data-toggle="dropdown">View a List of Classes by Region
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><%= link_to 'All Regions', "?region=all" %></li>
+          <li><%= link_to 'North/Northeast', "?region=north_northeast" %></li>
+          <li><%= link_to 'South/Southeast', "?region=south_southeast" %></li>
+          <li><%= link_to 'Southwest', "?region=southwest" %></li>
+          <li><%= link_to 'Downtown', "?region=downtown" %></li>
+          <li><%= link_to 'Gresham', "?region=gresham" %></li>
+          <li><%= link_to 'Washington County', "?region=washington_county" %></li>
+          <li><%= link_to 'Clark County', "?region=clark_county" %></li>
+          <li><%= link_to 'Other Areas', "?region=other_areas" %></li>
+        </ul>
+      </div>
+  </div>
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=initMap"
