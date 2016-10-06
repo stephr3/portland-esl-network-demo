@@ -1,1 +1,6 @@
 <h1>Sites#Clark_County</h1>
+<ul>
+  <% @sites.each do |site| %>
+  <li>Name: <%= site[0] %> | Region: <%= site[11] %></li>
+  <% end %>
+</ul>

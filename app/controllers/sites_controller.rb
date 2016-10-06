@@ -39,25 +39,49 @@ class SitesController < ApplicationController
 
     if params[:region].present?
       if params[:region] == 'all'
-        response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
+        response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Class Happening Now?'+=+'Yes'+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
         json_response = JSON.parse(response)
         @sites = json_response["rows"]
         render :all_regions
       elsif params[:region] == 'north_northeast'
+        response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Class Happening Now?'+=+'Yes'+AND+'Region'+=+'North/Northeast'+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
+        json_response = JSON.parse(response)
+        @sites = json_response["rows"]
         render :north_northeast
       elsif params[:region] == 'south_southeast'
+        response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Class Happening Now?'+=+'Yes'+AND+'Region'+=+'South/Southeast'+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
+        json_response = JSON.parse(response)
+        @sites = json_response["rows"]
         render :south_southeast
       elsif params[:region] == 'southwest'
+        response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Class Happening Now?'+=+'Yes'+AND+'Region'+=+'Southwest'+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
+        json_response = JSON.parse(response)
+        @sites = json_response["rows"]
         render :southwest
       elsif params[:region] == 'downtown'
+        response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Class Happening Now?'+=+'Yes'+AND+'Region'+=+'Downtown'+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
+        json_response = JSON.parse(response)
+        @sites = json_response["rows"]
         render :downtown
       elsif params[:region] == 'gresham'
+        response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Class Happening Now?'+=+'Yes'+AND+'Region'+=+'Gresham'+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
+        json_response = JSON.parse(response)
+        @sites = json_response["rows"]
         render :gresham
       elsif params[:region] == 'washington_county'
+        response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Class Happening Now?'+=+'Yes'+AND+'Region'+=+'Washington County'+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
+        json_response = JSON.parse(response)
+        @sites = json_response["rows"]
         render :washington_county
       elsif params[:region] == 'clark_county'
+        response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Class Happening Now?'+=+'Yes'+AND+'Region'+=+'Clark County'+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
+        json_response = JSON.parse(response)
+        @sites = json_response["rows"]
         render :clark_county
       elsif params[:region] == 'other_areas'
+        response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Class Happening Now?'+=+'Yes'+AND+'Region'+=+'Other Areas'+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
+        json_response = JSON.parse(response)
+        @sites = json_response["rows"]
         render :other_areas
       else
         render :index

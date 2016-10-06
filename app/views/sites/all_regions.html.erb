@@ -1,6 +1,6 @@
 <h1>Sites#AllRegions</h1>
 <ul>
   <% @sites.each do |site| %>
-  <li>Name: <%= site[0] %></li>
+  <li>Name: <%= site[0] %> | Region: <%= site[11] %> | Class Happening? <%= site[9] %></li>
   <% end %>
 </ul>
