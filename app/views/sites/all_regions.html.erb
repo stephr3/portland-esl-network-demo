@@ -1,6 +1,16 @@
 <h1>Sites#AllRegions</h1>
-<ul>
-  <% @sites.each do |site| %>
-  <li>Name: <%= site[0] %> | Region: <%= site[11] %> | Class Happening? <%= site[9] %></li>
-  <% end %>
-</ul>
+<% @sites.each do |site| %>
+<div class="row site-listing">
+  <div class="col-sm-8">
+    <h1><%= site[0] %></h1>
+    <ul>
+      <li>Address: <%= site[1] %></li>
+      <li>Contact: <%= site[3] %></li>
+      <li>Description: <%= site[2] %></li>
+    </ul>
+  </div>
+  <div class="col-sm-4">
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{site[1]}&markers=#{site[1]}&zoom=13&size=300x200&key=#{ENV['GOOGLE_API_KEY']}", class: 'img-fluid', alt: "#{site[0]} on the map"%>
+  </div>
+</div>
+<% end %>
