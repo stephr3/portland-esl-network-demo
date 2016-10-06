@@ -1,6 +1,4 @@
 <h1>Sites#Washington_County</h1>
-<ul>
-  <% @sites.each do |site| %>
-  <li>Name: <%= site[0] %> | Region: <%= site[11] %></li>
-  <% end %>
-</ul>
+<% @sites.each do |site| %>
+  <%= render partial: 'site_display', locals: { site: site } %>
+<% end %>
