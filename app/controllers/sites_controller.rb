@@ -37,6 +37,14 @@ class SitesController < ApplicationController
       @layer = "layer_all"
     end
 
+    if params[:name].present?
+      @name = params[:name]
+      response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+Name+CONTAINS+IGNORING+CASE+'#{@name}'+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
+      json_response = JSON.parse(response)
+      @sites = json_response["rows"]
+      render :search_results
+    end
+
     if params[:region].present?
       if params[:region] == 'all'
         response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Class Happening Now?'+=+'Yes'+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")

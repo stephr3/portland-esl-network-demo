@@ -1,5 +1,5 @@
-<h1>Sites#Clark_County</h1>
-
+<div class="site-listings-container">
 <% @sites.each do |site| %>
   <%= render partial: 'site_display', locals: { site: site } %>
-<% end %>
+  <% end %>
+</div>

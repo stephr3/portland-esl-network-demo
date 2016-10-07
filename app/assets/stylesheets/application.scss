@@ -16,6 +16,14 @@ h1 {
   margin-bottom: 20px;
 }
 
+.site-listings-container {
+  width: 90%;
+  padding: 10px;
+  margin: auto;
+  background-color: white;
+  border-radius: 5px;
+}
+
 .logo {
   height: 30%;
   background-color: white;
@@ -36,11 +44,11 @@ h1 {
 }
 
 @media screen and (min-width: 866px) {
-  #center-map {
+  #search-box {
     display: inline-block;
     width: 40%;
   }
-  #center-map-btn {
+  #search-box-btn {
     display: inline-block;
   }
 }
@@ -49,11 +57,11 @@ h1 {
   .search-nav {
     margin-left: 20%;
   }
-  #center-map {
+  #search-box {
     display: inline-block;
     width: 50%;
   }
-  #center-map-btn {
+  #search-box-btn {
     display: inline-block;
     width: 20%;
   }

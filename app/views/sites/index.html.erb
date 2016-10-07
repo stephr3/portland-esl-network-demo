@@ -139,10 +139,15 @@
   }
 </script>
 <div class="search-nav">
-<%= form_tag root_path, method: 'get', role: 'search' do %>
+  <%= form_tag root_path, method: 'get', role: 'search' do %>
   <%= label_tag :center, 'Search Map by Zip Code:', class: 'main-label' %>
-  <%= text_field_tag :center, params[:center], placeholder: 'Enter Zip Code', class: 'form-control', id: 'center-map' %>
-  <%= submit_tag 'Search', name: nil, class: 'btn btn-primary', id: 'center-map-btn' %>
+  <%= text_field_tag :center, params[:center], placeholder: 'Enter Zip Code', class: 'form-control search-box' %>
+  <%= submit_tag 'Search', name: nil, class: 'btn btn-primary', id: 'search-box-btn' %>
+  <% end %>
+  <%= form_tag root_path, method: 'get', role: 'search' do %>
+  <%= label_tag :name, 'Search Classes by Name:', class: 'main-label' %>
+  <%= text_field_tag :name, params[:name], placeholder: 'Enter Name Here', class: 'form-control search-box' %>
+  <%= submit_tag 'Search', name: nil, class: 'btn btn-primary', id: 'search-box-btn' %>
   <% end %>
   <div class="dropdown">
     <button class="dropdown-toggle btn btn-primary" type="button" data-toggle="dropdown" id="class-type-btn">Class Type

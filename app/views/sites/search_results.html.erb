@@ -1,0 +1,7 @@
+<% if @sites.length > 0 %>
+  <% @sites.each do |site| %>
+    <%= render partial: 'site_display', locals: { site: site } %>
+  <% end %>
+<% else %>
+  <p>No results were found for your search. <%= link_to 'Try Again.', root_path %></p>
+<% end %>
