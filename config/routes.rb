@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get "/teaching" => "links#teaching"
   get "/refugees" => "links#refugees"
   get "/" => "sites#index"
+  get '/log-in' => 'sessions#new'
+  post '/log-in' => 'sessions#create'
+  get '/log-out' => 'sessions#destroy', as: :log_out
+  get '/admin' => 'pages#admin'
 
   resources :posts
   resources :links

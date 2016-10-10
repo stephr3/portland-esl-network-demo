@@ -54,146 +54,145 @@
   </div>
 </div>
 
-<script type="text/javascript">
-  function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: <%= @center_on %>,
-    zoom: <%= @zoom %>
-  });
-
-  var layer_churches = new google.maps.FusionTablesLayer({
-    query: {
-      select: '\'Address\'',
-      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
-      where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Church'"
-    },
-    styleId: 1,
-    templateId: 1,
-    styles: [{
-      markerOptions: {
-        iconName: "red_circle"
-      }
-    }]
-  });
-
-  var layer_colleges = new google.maps.FusionTablesLayer({
-    query: {
-      select: '\'Address\'',
-      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
-      where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Community College or University'"
-    },
-    styleId: 1,
-    templateId: 1,
-    styles: [{
-      markerOptions: {
-        iconName: "blu_circle"
-      }
-    }]
-  });
-
-  var layer_businesses = new google.maps.FusionTablesLayer({
-    query: {
-      select: '\'Address\'',
-      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
-      where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'For-Profit Business'"
-    },
-    styleId: 1,
-    templateId: 1,
-    styles: [{
-      markerOptions: {
-        iconName: "purple_circle"
-      }
-    }]
-  });
-
-  var layer_libraries = new google.maps.FusionTablesLayer({
-    query: {
-      select: '\'Address\'',
-      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
-      where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Library'"
-    },
-    styleId: 1,
-    templateId: 1,
-    styles: [{
-      markerOptions: {
-        iconName: "ylw_circle"
-      }
-    }]
-  });
-
-  var layer_schools = new google.maps.FusionTablesLayer({
-    query: {
-      select: '\'Address\'',
-      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
-      where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Public School'"
-    },
-    styleId: 1,
-    templateId: 1,
-    styles: [{
-      markerOptions: {
-        iconName: "ltblu_circle"
-      }
-    }]
-  });
-
-  var layer_services = new google.maps.FusionTablesLayer({
-    query: {
-      select: '\'Address\'',
-      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
-      where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Social Service/Government/Non-Profit'"
-    },
-    styleId: 1,
-    templateId: 1,
-    styles: [{
-      markerOptions: {
-        iconName: "grn_circle"
-      }
-    }]
-  });
-
-  var layer_all = new google.maps.FusionTablesLayer({
-    query: {
-      select: '\'Address\'',
-      from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
-      where: "'Class Happening Now?' = 'Yes'"
-    },
-    styleId: 1,
-    templateId: 1,
-    styles: [{
-      where: "'TypeofSite' = 'Community College or University'",
-      markerOptions: {
-        iconName: "blu_circle"
-      }
-    }, {
-      where: "TypeofSite' = 'Social Service/Government/Non-Profit'",
-      markerOptions: {
-        iconName: "grn_circle"
-      }
-    }, {
-      where: "'TypeofSite' = 'Church'",
-      markerOptions: {
-        iconName: "red_circle"
-      }
-    }, {
-      where: "'TypeofSite' = 'Library'",
-      markerOptions: {
-        iconName: "ylw_circle"
-      }
-    }, {
-      where: "'TypeofSite' = 'Public School'",
-      markerOptions: {
-        iconName: "ltblu_circle"
-      }
-    }, {
-      where: "'TypeofSite' = 'For-Profit Business'",
-      markerOptions: {
-        iconName: "purple_circle"
-      }
-    }]
-  });
-  <%= @layer %>.setMap(map);
-  }
-</script>
-
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=initMap"
 async defer></script>
+<script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: <%= @center_on %>,
+      zoom: <%= @zoom %>
+    });
+
+    var layer_churches = new google.maps.FusionTablesLayer({
+      query: {
+        select: '\'Address\'',
+        from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+        where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Church'"
+      },
+      styleId: 1,
+      templateId: 1,
+      styles: [{
+        markerOptions: {
+          iconName: "red_circle"
+        }
+      }]
+    });
+
+    var layer_colleges = new google.maps.FusionTablesLayer({
+      query: {
+        select: '\'Address\'',
+        from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+        where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Community College or University'"
+      },
+      styleId: 1,
+      templateId: 1,
+      styles: [{
+        markerOptions: {
+          iconName: "blu_circle"
+        }
+      }]
+    });
+
+    var layer_businesses = new google.maps.FusionTablesLayer({
+      query: {
+        select: '\'Address\'',
+        from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+        where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'For-Profit Business'"
+      },
+      styleId: 1,
+      templateId: 1,
+      styles: [{
+        markerOptions: {
+          iconName: "purple_circle"
+        }
+      }]
+    });
+
+    var layer_libraries = new google.maps.FusionTablesLayer({
+      query: {
+        select: '\'Address\'',
+        from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+        where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Library'"
+      },
+      styleId: 1,
+      templateId: 1,
+      styles: [{
+        markerOptions: {
+          iconName: "ylw_circle"
+        }
+      }]
+    });
+
+    var layer_schools = new google.maps.FusionTablesLayer({
+      query: {
+        select: '\'Address\'',
+        from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+        where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Public School'"
+      },
+      styleId: 1,
+      templateId: 1,
+      styles: [{
+        markerOptions: {
+          iconName: "ltblu_circle"
+        }
+      }]
+    });
+
+    var layer_services = new google.maps.FusionTablesLayer({
+      query: {
+        select: '\'Address\'',
+        from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+        where: "'Class Happening Now?' = 'Yes' AND 'TypeofSite' = 'Social Service/Government/Non-Profit'"
+      },
+      styleId: 1,
+      templateId: 1,
+      styles: [{
+        markerOptions: {
+          iconName: "grn_circle"
+        }
+      }]
+    });
+
+    var layer_all = new google.maps.FusionTablesLayer({
+      query: {
+        select: '\'Address\'',
+        from: '1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8',
+        where: "'Class Happening Now?' = 'Yes'"
+      },
+      styleId: 1,
+      templateId: 1,
+      styles: [{
+        where: "'TypeofSite' = 'Community College or University'",
+        markerOptions: {
+          iconName: "blu_circle"
+        }
+      }, {
+        where: "TypeofSite' = 'Social Service/Government/Non-Profit'",
+        markerOptions: {
+          iconName: "grn_circle"
+        }
+      }, {
+        where: "'TypeofSite' = 'Church'",
+        markerOptions: {
+          iconName: "red_circle"
+        }
+      }, {
+        where: "'TypeofSite' = 'Library'",
+        markerOptions: {
+          iconName: "ylw_circle"
+        }
+      }, {
+        where: "'TypeofSite' = 'Public School'",
+        markerOptions: {
+          iconName: "ltblu_circle"
+        }
+      }, {
+        where: "'TypeofSite' = 'For-Profit Business'",
+        markerOptions: {
+          iconName: "purple_circle"
+        }
+      }]
+    });
+    <%= @layer %>.setMap(map);
+  }
+</script>
