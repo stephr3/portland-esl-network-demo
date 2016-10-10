@@ -1,4 +1,5 @@
 class SitesController < ApplicationController
+  before_filter :is_admin, only:[:admin, :new]
   def index
     if params[:center].present?
       @center = params[:center]
@@ -95,5 +96,14 @@ class SitesController < ApplicationController
         render :index
       end
     end
+  end
+
+  def admin
+    response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
+    json_response = JSON.parse(response)
+    @sites = json_response["rows"]
+  end
+
+  def new
   end
 end
