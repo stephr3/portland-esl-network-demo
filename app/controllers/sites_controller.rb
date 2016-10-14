@@ -7,7 +7,7 @@ class SitesController < ApplicationController
         lat = Geocoder.search(@center).first.coordinates.first
         lng = Geocoder.search(@center).first.coordinates.last
         @center_on = "{lat: #{lat}, lng: #{lng}}"
-        @zoom = 13
+        @zoom = 12
       else
         flash[:alert] = "Please enter a valid zip code."
         @center_on = "{lat: 45.543897, lng: -122.655977}"
@@ -16,26 +16,6 @@ class SitesController < ApplicationController
     else
       @center_on = "{lat: 45.543897, lng: -122.655977}"
       @zoom = 9
-    end
-
-    if params[:site_type].present?
-      if params[:site_type] == 'church'
-        @layer = "layer_churches"
-      elsif params[:site_type] == 'college'
-        @layer = "layer_colleges"
-      elsif params[:site_type] == 'business'
-        @layer = "layer_businesses"
-      elsif params[:site_type] == 'library'
-        @layer = "layer_libraries"
-      elsif params[:site_type] == 'public_school'
-        @layer = "layer_schools"
-      elsif params[:site_type] == 'social_service'
-        @layer = "layer_services"
-      else
-        @layer = "layer_all"
-      end
-    else
-      @layer = "layer_all"
     end
 
     if params[:name].present?
@@ -96,40 +76,5 @@ class SitesController < ApplicationController
         render :index
       end
     end
-  end
-
-  def admin
-    response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
-    json_response = JSON.parse(response)
-    @sites = json_response["rows"]
-  end
-
-  def new
-  end
-
-  def edit
-    name = params[:name]
-    response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+ROWID+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Name'+=+'#{name}'&key=#{ENV['GOOGLE_API_KEY']}")
-    json_response = JSON.parse(response)
-    row_id = json_response["rows"][0][0]
-    @site = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+ROWID+=+#{row_id}&key=#{ENV['GOOGLE_API_KEY']}")
-  end
-
-  def update
-    name = params[:name]
-    response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+ROWID+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Name'+=+'#{name}'&key=#{ENV['GOOGLE_API_KEY']}")
-    json_response = JSON.parse(response)
-    row_id = json_response["rows"][0][0]
-    #Needs Authentication
-    RestClient.post()
-  end
-
-  def destroy
-    name = params[:name]
-    response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+ROWID+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Name'+=+'#{name}'&key=#{ENV['GOOGLE_API_KEY']}")
-    json_response = JSON.parse(response)
-    row_id = json_response["rows"][0][0]
-    #Needs Authentication
-    RestClient.post("https://www.googleapis.com/fusiontables/v1/query?sql=DELETE+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+ROWID+=+#{row_id}&key=#{ENV['GOOGLE_API_KEY']}")
   end
 end
