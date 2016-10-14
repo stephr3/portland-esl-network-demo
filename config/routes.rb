@@ -11,11 +11,6 @@ Rails.application.routes.draw do
   post '/log-in' => 'sessions#create'
   get '/log-out' => 'sessions#destroy', as: :log_out
   get '/admin' => 'pages#admin'
-  get '/admin/sites' => 'sites#admin'
-  get '/admin/sites/new' => 'sites#new'
-  delete 'admin/sites' => 'sites#destroy'
-  get 'admin/sites/edit' => 'sites#edit'
-  patch 'admin/sites' => 'sites#update'
 
   resources :posts
   resources :links

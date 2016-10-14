@@ -97,39 +97,4 @@ class SitesController < ApplicationController
       end
     end
   end
-
-  def admin
-    response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+ORDER+BY+Name+ASC&key=#{ENV['GOOGLE_API_KEY']}")
-    json_response = JSON.parse(response)
-    @sites = json_response["rows"]
-  end
-
-  def new
-  end
-
-  def edit
-    name = params[:name]
-    response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+ROWID+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Name'+=+'#{name}'&key=#{ENV['GOOGLE_API_KEY']}")
-    json_response = JSON.parse(response)
-    row_id = json_response["rows"][0][0]
-    @site = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+*+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+ROWID+=+#{row_id}&key=#{ENV['GOOGLE_API_KEY']}")
-  end
-
-  def update
-    name = params[:name]
-    response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+ROWID+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Name'+=+'#{name}'&key=#{ENV['GOOGLE_API_KEY']}")
-    json_response = JSON.parse(response)
-    row_id = json_response["rows"][0][0]
-    #Needs Authentication
-    RestClient.post()
-  end
-
-  def destroy
-    name = params[:name]
-    response = RestClient.get("https://www.googleapis.com/fusiontables/v1/query?sql=SELECT+ROWID+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+'Name'+=+'#{name}'&key=#{ENV['GOOGLE_API_KEY']}")
-    json_response = JSON.parse(response)
-    row_id = json_response["rows"][0][0]
-    #Needs Authentication
-    RestClient.post("https://www.googleapis.com/fusiontables/v1/query?sql=DELETE+FROM+1ns0L3nnMDTnIwnbrMwwO30ZDoQK-6b_yQRqNYY8+WHERE+ROWID+=+#{row_id}&key=#{ENV['GOOGLE_API_KEY']}")
-  end
 end
