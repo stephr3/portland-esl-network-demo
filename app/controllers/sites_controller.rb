@@ -1,5 +1,4 @@
 class SitesController < ApplicationController
-  before_filter :is_admin, only:[:admin, :new]
   def index
     if params[:center].present?
       @center = params[:center]

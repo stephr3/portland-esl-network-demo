@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  before_filter :is_admin, only:[:new]
   def learning
   end
 
@@ -6,5 +7,9 @@ class LinksController < ApplicationController
   end
 
   def refugees
+  end
+
+  def new
+    @link = Link.new
   end
 end
