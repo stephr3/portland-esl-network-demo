@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
   before_filter :is_admin, only:[:new]
   def learning
-    @links = Link.all
+    @links = Link.where(page: 'Student Learning Resources')
   end
 
   def teaching
