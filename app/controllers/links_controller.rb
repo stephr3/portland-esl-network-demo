@@ -1,17 +1,20 @@
 class LinksController < ApplicationController
   before_filter :is_admin, only:[:new, :edit, :destroy]
-  def learning
-    @links = Link.where(page: 'Student Learning Resources')
+  def index
+    if params[:type].present?
+      if params[:type] == 'learning'
+        @links = Link.where(page: 'Student Learning Resources')
+        render :learning
+      elsif params[:type] == 'teaching'
+        @links = Link.where(page: 'Teaching Resources')
+        render :teaching
+      elsif params[:type] == 'refugees'
+        @links = Link.where(page: 'Refugee Backgrounders')
+        render :refugees
+      end
+    end
   end
-
-  def teaching
-    @links = Link.where(page: 'Teaching Resources')
-  end
-
-  def refugees
-    @links = Link.where(page: 'Refugee Backgrounders')
-  end
-
+  
   def new
     @link = Link.new
   end
@@ -41,7 +44,7 @@ class LinksController < ApplicationController
       respond_to do |format|
         format.html { redirect_to :back }
         format.js
-      end      
+      end
     else
       flash[:alert] = "We're sorry, your link updates have not been successfully submitted."
       render :edit
