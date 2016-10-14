@@ -1,1 +1,4 @@
-<h1>Links#Learning</h1>
+<h1>Student Learning Resources</h1>
+<% @links.each do |link| %>
+  <%= render partial: 'display_link', locals: { link: link } %>
+<% end %>
