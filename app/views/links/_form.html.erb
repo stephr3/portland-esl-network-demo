@@ -1,7 +1,7 @@
 <%= render "layouts/errors", :object => @link %>
 <%= form_for @link do |f| %>
   <%= f.label :page, 'Link Page:' %>
-  <%= f.select :page, options_for_select(['', 'Student Learning Resources', 'Refugee Backgrounders', 'Teaching Resources']), {}, {class: "form-control"} %>
+  <%= f.select :page, options_for_select(['', 'Student Learning Resources', 'Refugee Backgrounders', 'Teaching Resources'], selected: f.object.page), {}, {class: "form-control"} %>
   <%= f.label :title %>
   <%= f.text_field :title, required: true, class: "form-control" %>
   <%= f.label :url %>
